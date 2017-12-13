@@ -28,12 +28,13 @@ namespace RocksmithToPlaylist
             */
 
 
+            // These are hardcoded paths. I should find these in another way. Perhaps through the registry?
             var dlcDirectory = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Rocksmith2014\\dlc\\";
             List<string> files = scanDirectory("psarc", dlcDirectory);
 
             files.Add("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Rocksmith2014\\songs.psarc");
 
-            //Writing to file temporarily
+            // Constructing the list of songs
             foreach (string i in files)
             {
                 var browser = new PsarcBrowser(i);
@@ -44,6 +45,8 @@ namespace RocksmithToPlaylist
                 }
 
             }
+
+            // Write the songs out to a txt file ('csv' format)
             using (System.IO.StreamWriter file =
                 new System.IO.StreamWriter(@"C:\\Test\\Test.txt"))
             {
